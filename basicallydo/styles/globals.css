@@ -1,16 +1,44 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+/* ./styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  @apply text-4xl;
+}
+h2 {
+  @apply text-3xl;
+}
+h3 {
+  @apply text-xl;
+}
+h4 {
+  @apply text-lg;
+}
+h5 {
+  @apply text-base;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+label {
+  @apply flex flex-row justify-between text-left md:max-w-xs leading-7 text-white;
 }
 
-* {
-  box-sizing: border-box;
+input {
+  @apply border-solid border-2 border-gray-700 rounded-md;
+}
+
+button {
+  @apply border-solid border-2 border-gray-700 rounded-md pr-4 pl-4 align-middle;
+}
+
+a.button {
+  @apply border-solid border-2 border-gray-700 rounded-md pr-4 pl-4 align-middle cursor-pointer;
+}
+
+div.container {
+  @apply max-w-7xl m-auto px-9;
+}
+
+div.task-wrapper {
+  @apply flex flex-col justify-center md:flex-row md:flex-wrap;
 }

@@ -14,6 +14,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/routes/TaskRoutes.js", "pages/api/repositories/TaskRepository.js", "models/Task.js", "pages/api/tasks/tasks.js", "components/forms/createTaskForm.tsx"],
   "exclude": ["node_modules"]
 }
