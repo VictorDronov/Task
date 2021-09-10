@@ -20,23 +20,23 @@ h5 {
 }
 
 label {
-  @apply flex flex-row justify-between text-left md:max-w-xs leading-7 text-white;
+  @apply flex flex-row justify-between leading-7 text-left text-white md:max-w-xs;
 }
 
 input {
-  @apply border-solid border-2 border-gray-700 rounded-md;
+  @apply text-gray-900 border-2 border-gray-700 border-solid rounded-md;
 }
 
 button {
-  @apply border-solid border-2 border-gray-700 rounded-md pr-4 pl-4 align-middle;
+  @apply pl-4 pr-4 align-middle border-2 border-gray-700 border-solid rounded-md;
 }
 
 a.button {
-  @apply border-solid border-2 border-gray-700 rounded-md pr-4 pl-4 align-middle cursor-pointer;
+  @apply pl-4 pr-4 align-middle border-2 border-gray-700 border-solid rounded-md cursor-pointer;
 }
 
 div.container {
-  @apply max-w-7xl m-auto px-9;
+  @apply m-auto max-w-7xl px-9;
 }
 
 div.task-wrapper {
