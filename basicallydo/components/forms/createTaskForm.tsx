@@ -1,30 +1,33 @@
-import axios from "axios";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { mongodb, realmApp } from "../../lib/realm";
 
-const TaskForm = (): React.ReactElement => {
+interface Form {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  setRefreshing: Dispatch<SetStateAction<boolean>>;
+}
+
+const TaskForm = ({
+  setRefreshing,
+}: Props): React.ReactElement => {
   const { register, handleSubmit, reset } = useForm<Form>({
     defaultValues: { title: "", description: "" },
   });
 
-  interface Form {
-    title: string;
-    description: string;
-  }
-
   const onSubmit: SubmitHandler<Form> = async (data): Promise<void> => {
-    axios
-      .post("http://localhost:3000/api/tasks", {
+    if (realmApp.currentUser) {
+      mongodb?.db("user_tasks").collection("tasks").insertOne({
+        user_id: realmApp.currentUser.id,
         title: data.title,
         description: data.description,
-      })
-      .then(() => {
-        // console.log("Task Successfully Created!");
-        reset();
-      })
-      .catch((err) => {
-        console.log(err);
       });
+      setRefreshing(true);
+      reset();
+    }
   };
 
   return (

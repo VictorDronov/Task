@@ -1,6 +1,6 @@
 {
     "collection": "tasks",
-    "database": "BasicallyDo",
+    "database": "user_tasks",
     "roles": [
         {
             "name": "owner",
