@@ -19,26 +19,30 @@ h5 {
   @apply text-base;
 }
 
+p {
+  @apply text-sm;
+}
+
 label {
-  @apply flex flex-row justify-between leading-7 text-left text-white md:max-w-xs;
+  @apply flex flex-row justify-between leading-7 text-left text-white p-3 mt-5 border-2 border-green-500 border-solid rounded-md bg-brand-secondary;
 }
 
 input {
-  @apply text-gray-900 border-2 border-gray-700 border-solid rounded-md;
+  @apply placeholder-gray-500 border-none outline-none bg-brand-secondary text-brand-text w-full;
 }
 
 button {
   @apply pl-4 pr-4 align-middle border-2 border-gray-700 border-solid rounded-md;
 }
 
-a.button {
+.button {
   @apply pl-4 pr-4 align-middle border-2 border-gray-700 border-solid rounded-md cursor-pointer;
 }
 
-div.container {
+.container {
   @apply m-auto max-w-7xl px-9;
 }
 
-div.task-wrapper {
+.task-wrapper {
   @apply flex flex-col justify-center md:flex-row md:flex-wrap;
 }

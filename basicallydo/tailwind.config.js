@@ -13,9 +13,10 @@ module.exports = {
       }),
       colors: {
         brand: {
-          primary: "#0363F9",
-          secondary: "#4DD962",
-          text: "#F8FFF3",
+          primary: "#467CF0",
+          secondary: "#020202",
+          lightSecondary: "#373737",
+          text: "#FFFFFF",
         },
       },
     },

@@ -23,28 +23,36 @@ const Tasks = ({ isRefreshing, setRefreshing }: Props): React.ReactElement => {
       mongodb
         ?.db("user_tasks")
         .collection("tasks")
-        .find({ sort: realmApp.currentUser?.id })
+        .find({ user_id: `${realmApp.currentUser?.id}` })
         .then((res) => {
           setTasks(res);
           console.log(res);
           setRefreshing(!isRefreshing);
+        })
+        .catch((err) => {
+          console.log(err);
         });
     }
   }, [isRefreshing, setRefreshing]);
 
-  const Delete = (title: string) => {
-    mongodb?.db("user_tasks").collection("tasks").findOneAndDelete({ title });
-    console.log("DEleted", title);
+  const Delete = (id: string) => {
+    mongodb
+      ?.db("user_tasks")
+      .collection("tasks")
+      .deleteOne({ _id: id })
+      .then(() => {
+        setRefreshing(!isRefreshing);
+      });
   };
 
   return (
-    <div className="container task-wrapper">
+    <div className="task-wrapper">
       {tasks &&
-        tasks.map(({ user_id, _id, description, title }) => (
+        tasks.map(({ _id, description, title }) => (
           <div key={_id} className="mx-3 mb-3 md:w-2/6">
             <h3>{title}</h3>
             <p className="text-center">{description}</p>
-            <button onClick={() => Delete(title)}>Delete</button>
+            <button onClick={() => Delete(_id)}>Delete</button>
           </div>
         ))}
     </div>

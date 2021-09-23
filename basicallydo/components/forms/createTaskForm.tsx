@@ -11,9 +11,7 @@ interface Props {
   setRefreshing: Dispatch<SetStateAction<boolean>>;
 }
 
-const TaskForm = ({
-  setRefreshing,
-}: Props): React.ReactElement => {
+const TaskForm = ({ setRefreshing }: Props): React.ReactElement => {
   const { register, handleSubmit, reset } = useForm<Form>({
     defaultValues: { title: "", description: "" },
   });
@@ -31,29 +29,30 @@ const TaskForm = ({
   };
 
   return (
-    <div className="flex justify-center mt-8">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>
-          Title:&nbsp;
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full">
+        <label className="mb-3 text-black">
           <input
+            placeholder="Title"
             {...register("title", {
               required: "Please enter your Task title.",
             })}
           />
         </label>
-        <label>
-          Task Description:&nbsp;
+        <label className="mb-3 text-black">
           <input
+            placeholder="Description"
             {...register("description", {
               required: "Please enter your Task descirption.",
             })}
           />
         </label>
-        <button className="flex justify-items-end" type="submit">
+        <button
+          className="py-3 mt-5 font-bold transition bg-green-400 hover:bg-green-500 text-brand-secondary"
+          type="submit"
+        >
           Add Task
         </button>
       </form>
-    </div>
   );
 };
 
