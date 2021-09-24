@@ -20,6 +20,11 @@ const Task = ({
   setRefreshing,
 }: ITaskProps): React.ReactElement => {
   const [isShowingDetails, setShowingDetails] = useState<boolean>(false);
+  const [isUpdating, showUpdating] = useState<boolean>(false);
+  const [updateContent, setUpdatedContent] = useState<{
+    title: string;
+    description: string;
+  }>();
 
   const Delete = (id: string) => {
     mongodb
@@ -34,7 +39,7 @@ const Task = ({
       });
   };
 
-  const UpdateComplete = (
+  const Update = (
     id: string,
     user_id: string,
     title: string,
@@ -68,7 +73,7 @@ const Task = ({
           <div
             className="flex self-start p-3 border-2 border-red-600 border-solid rounded-lg cursor-pointer"
             onClick={() => {
-              UpdateComplete(
+              Update(
                 details._id,
                 details.user_id,
                 details.title,
@@ -81,7 +86,7 @@ const Task = ({
           <div
             className="flex self-start p-1 border-2 border-green-500 border-solid rounded-lg cursor-pointer"
             onClick={() => {
-              UpdateComplete(
+              Update(
                 details._id,
                 details.user_id,
                 details.title,
@@ -94,7 +99,21 @@ const Task = ({
           </div>
         )}
         <div className="flex self-center justify-between w-full">
-          <h3 className="ml-3">{details.title}</h3>
+          {isUpdating ? (
+            <label className="m-0 ml-3">
+              <input
+                className="ml-3"
+                value={details.title}
+                type="text"
+                name="title"
+                onChange={(e) => {
+                  console.log(e.target.title);
+                }}
+              />
+            </label>
+          ) : (
+            <h3 className="ml-3">{details.title}</h3>
+          )}
           {isShowingDetails ? (
             <FaAngleUp
               size={20}
@@ -112,9 +131,44 @@ const Task = ({
       </div>
       {isShowingDetails && (
         <>
-          <p className="mt-3 text-center">{details.description}</p>
+          {isUpdating ? (
+            <label>
+              <textarea
+                name="description"
+                className="w-full placeholder-gray-500 border-none outline-none resize-none bg-brand-secondary text-brand-text"
+                value={details.description}
+                // onChange={(e) => {
+                //   console.log(e.target.value);
+                // }}
+              />
+            </label>
+          ) : (
+            <p className="mt-3 text-center">{details.description}</p>
+          )}
           <div className="flex justify-center mt-3">
-            <button> Update</button>
+            {isUpdating ? (
+              <>
+                <button onClick={() => showUpdating(false)}>
+                  Cancel Update
+                </button>
+                <button
+                  className="ml-3"
+                  onClick={() => {
+                    Update(
+                      details._id,
+                      details.user_id,
+                      details.title,
+                      details.description,
+                      details.complete
+                    );
+                  }}
+                >
+                  Submit Update
+                </button>
+              </>
+            ) : (
+              <button onClick={() => showUpdating(false)}> Update</button>
+            )}
             <button
               className="ml-3 text-red-600 border-red-600 hover:text-red-700 hover:border-red-700"
               onClick={() => Delete(details._id)}

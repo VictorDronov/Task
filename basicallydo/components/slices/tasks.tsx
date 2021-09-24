@@ -40,13 +40,8 @@ const Tasks = ({ isRefreshing, setRefreshing }: Props): React.ReactElement => {
       <div className="task-wrapper">
         {tasks?.map((details) => (
           <Task
-            // complete={complete}
-            // user_id={user_id}
             key={Math.random()}
             details={details}
-            // _id={_id}
-            // description={description}
-            // title={title}
             setRefreshing={setRefreshing}
             isRefreshing={isRefreshing}
           />
