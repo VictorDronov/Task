@@ -38,13 +38,31 @@ const Tasks = ({ isRefreshing, setRefreshing }: Props): React.ReactElement => {
     <>
       <h2 className="mt-6 mb-6 font-semibold text-brand-primary">Your Tasks</h2>
       <div className="task-wrapper">
+        <h3 className="mb-3">Unfinished Tasks</h3>
         {tasks?.map((details) => (
-          <Task
-            key={Math.random()}
-            details={details}
-            setRefreshing={setRefreshing}
-            isRefreshing={isRefreshing}
-          />
+          <>
+            {details.complete === false && (
+              <Task
+                key={Math.random()}
+                details={details}
+                setRefreshing={setRefreshing}
+                isRefreshing={isRefreshing}
+              />
+            )}
+          </>
+        ))}
+        <h3 className="mb-3">Finished Tasks</h3>
+        {tasks?.map((details) => (
+          <>
+            {details.complete === true && (
+              <Task
+                key={Math.random()}
+                details={details}
+                setRefreshing={setRefreshing}
+                isRefreshing={isRefreshing}
+              />
+            )}
+          </>
         ))}
       </div>
     </>
