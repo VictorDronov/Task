@@ -100,7 +100,7 @@ const SignInForm = (): React.ReactElement => {
           </label>
         )}
         <button
-          className="py-3 mt-5 font-bold text-gray-900 bg-gradient-to-r from-brand-primary via-green-300 to-green-500"
+          className="py-3 mt-5 font-bold text-gray-900 hover:opacity-80 bg-gradient-to-r from-brand-primary via-green-300 to-green-500"
           type="submit"
         >
           {!signUp ? "Sign In" : "Sign Up"}

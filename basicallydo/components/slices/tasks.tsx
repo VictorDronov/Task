@@ -1,12 +1,13 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { mongodb, realmApp } from "../../lib/realm";
-import { useRouter } from "next/router";
+import Task from "./task";
 
 interface Tasks {
   user_id: string;
   _id: string;
   title: string;
   description: string;
+  complete: boolean;
 }
 
 interface Props {
@@ -15,11 +16,9 @@ interface Props {
 }
 const Tasks = ({ isRefreshing, setRefreshing }: Props): React.ReactElement => {
   const [tasks, setTasks] = useState<Tasks[]>();
-  const router = useRouter();
 
   useEffect(() => {
-    if (isRefreshing) {
-      console.log(realmApp.currentUser?.id);
+    if (isRefreshing === true) {
       mongodb
         ?.db("user_tasks")
         .collection("tasks")
@@ -35,27 +34,25 @@ const Tasks = ({ isRefreshing, setRefreshing }: Props): React.ReactElement => {
     }
   }, [isRefreshing, setRefreshing]);
 
-  const Delete = (id: string) => {
-    mongodb
-      ?.db("user_tasks")
-      .collection("tasks")
-      .deleteOne({ _id: id })
-      .then(() => {
-        setRefreshing(!isRefreshing);
-      });
-  };
-
   return (
-    <div className="task-wrapper">
-      {tasks &&
-        tasks.map(({ _id, description, title }) => (
-          <div key={_id} className="mx-3 mb-3 md:w-2/6">
-            <h3>{title}</h3>
-            <p className="text-center">{description}</p>
-            <button onClick={() => Delete(_id)}>Delete</button>
-          </div>
+    <>
+      <h2 className="mt-6 mb-6 font-semibold text-brand-primary">Your Tasks</h2>
+      <div className="task-wrapper">
+        {tasks?.map((details) => (
+          <Task
+            // complete={complete}
+            // user_id={user_id}
+            key={Math.random()}
+            details={details}
+            // _id={_id}
+            // description={description}
+            // title={title}
+            setRefreshing={setRefreshing}
+            isRefreshing={isRefreshing}
+          />
         ))}
-    </div>
+      </div>
+    </>
   );
 };
 

@@ -44,5 +44,5 @@ button {
 }
 
 .task-wrapper {
-  @apply flex flex-col justify-center md:flex-row md:flex-wrap;
+  @apply flex flex-col justify-center flex-wrap;
 }
