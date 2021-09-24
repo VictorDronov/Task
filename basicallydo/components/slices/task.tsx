@@ -112,7 +112,13 @@ const Task = ({
               />
             </label>
           ) : (
-            <h3 className="ml-3">{details.title}</h3>
+            <>
+              {details.complete === true ? (
+                <h3 className="ml-3 line-through">{details.title}</h3>
+              ) : (
+                <h3 className="ml-3">{details.title}</h3>
+              )}
+            </>
           )}
           {isShowingDetails ? (
             <FaAngleUp
