@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { SubmitHandler, useForm, Validate } from "react-hook-form";
 import * as Realm from "realm-web";
-import { mongodb, realmApp } from "../../lib/realm";
+import { realmApp } from "../../lib/realm";
 
 interface LoginForm {
   username: string;
@@ -83,7 +83,7 @@ const SignInForm = (): React.ReactElement => {
             {errors.confirmPassword.message}
           </p>
         )}
-        {signUp && (
+        {/* {signUp && (
           <label>
             <input
               placeholder="Your Name"
@@ -92,7 +92,7 @@ const SignInForm = (): React.ReactElement => {
               })}
             />
           </label>
-        )}
+        )} */}
         <label>
           <input
             placeholder="Email"

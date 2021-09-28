@@ -48,13 +48,18 @@ const Tasks = ({
         {tasks && tasks?.length > 0 ? (
           tasks?.map((details) => (
             <>
-              {details.complete === false && (
+              {details.complete === false ? (
                 <Task
                   key={Math.random()}
                   details={details}
                   setRefreshing={setRefreshing}
                   isRefreshing={isRefreshing}
                 />
+              ) : (
+                <div className="relative flex items-center justify-center w-6/12 m-auto mb-5">
+                  <Image src={plant} alt="sprout" width={200} height={200} />
+                  <p className="absolute bottom-0 ">No Tasks To Complete</p>
+                </div>
               )}
             </>
           ))
@@ -65,16 +70,21 @@ const Tasks = ({
           </div>
         )}
         <h3 className="mb-3">Finished Tasks</h3>
-        {tasks && tasks?.length > 0 ? (
+        {tasks && tasks?.length ? (
           tasks?.map((details) => (
             <>
-              {details.complete === true && (
+              {details.complete === true ? (
                 <Task
                   key={Math.random()}
                   details={details}
                   setRefreshing={setRefreshing}
                   isRefreshing={isRefreshing}
                 />
+              ) : (
+                <div className="relative flex items-center justify-center w-6/12 m-auto mb-5">
+                  <Image src={plant} alt="sprout" width={200} height={200} />
+                  <p className="absolute bottom-0 ">No Tasks Complete</p>
+                </div>
               )}
             </>
           ))
