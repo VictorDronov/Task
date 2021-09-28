@@ -1,5 +1,5 @@
 import React from "react";
-import { AuthForm } from "../components";
+import { AuthForm } from "components";
 import { FaLeaf } from "react-icons/fa";
 
 const Login = (): React.ReactElement => {

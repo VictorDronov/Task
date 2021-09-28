@@ -173,7 +173,11 @@ const Task = ({
                 </button>
               </>
             ) : (
-              <button onClick={() => showUpdating(false)}> Update</button>
+              <>
+                {!details.complete && (
+                  <button onClick={() => showUpdating(false)}> Update</button>
+                )}
+              </>
             )}
             <button
               className="ml-3 text-red-600 border-red-600 hover:text-red-700 hover:border-red-700"

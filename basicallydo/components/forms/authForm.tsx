@@ -1,22 +1,23 @@
 import { useRouter } from "next/router";
-import React, { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
+import { SubmitHandler, useForm, Validate } from "react-hook-form";
 import * as Realm from "realm-web";
-import { realmApp } from "../../lib/realm";
+import { mongodb, realmApp } from "../../lib/realm";
 
 interface LoginForm {
+  username: string;
   email: string;
   password: string;
+  confirmPassword: string;
 }
 
 const SignInForm = (): React.ReactElement => {
   const {
+    watch,
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginForm>({
-    defaultValues: { email: "", password: "" },
-  });
+  } = useForm<LoginForm>({});
   const [error, setCustomError] = useState<{ bool: boolean; message: string }>({
     bool: false,
     message: "",
@@ -36,9 +37,10 @@ const SignInForm = (): React.ReactElement => {
           data.email,
           data.password
         );
-
-        realmApp.logIn(credentials);
-        //   console.log(user);
+        const user: Realm.User = await realmApp.logIn(credentials);
+        if (user) {
+          router.push("/");
+        }
       } else {
         const credentials = Realm.Credentials.emailPassword(
           data.email,
@@ -76,6 +78,21 @@ const SignInForm = (): React.ReactElement => {
             {errors.email.message}
           </p>
         )}
+        {errors.confirmPassword && (
+          <p className="w-full text-center text-red-600">
+            {errors.confirmPassword.message}
+          </p>
+        )}
+        {signUp && (
+          <label>
+            <input
+              placeholder="Your Name"
+              {...register("username", {
+                required: "Please enter your name *",
+              })}
+            />
+          </label>
+        )}
         <label>
           <input
             placeholder="Email"
@@ -96,7 +113,16 @@ const SignInForm = (): React.ReactElement => {
         </label>
         {signUp && (
           <label>
-            <input placeholder="Confirm Password" />
+            <input
+              id="confirmPassword"
+              type="password"
+              placeholder="Confirm Password"
+              {...register("confirmPassword", {
+                validate: (value) =>
+                  value === watch("password") || "Passwords must match",
+                required: "Passwords must be the same!",
+              })}
+            />
           </label>
         )}
         <button
