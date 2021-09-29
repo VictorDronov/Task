@@ -7,11 +7,12 @@ const MyTasks = (): React.ReactElement => {
   const [isRefreshing, setRefreshing] = useState<boolean>(true);
 
   const isAuthenticated = !!realmApp.currentUser;
+
   useEffect(() => {
     if (!isAuthenticated) {
       router.push("/auth");
     } else {
-      return;
+      router.push("/my-tasks");
     }
   });
 
