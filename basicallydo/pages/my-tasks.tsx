@@ -1,10 +1,9 @@
-import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { ContentWrapper, CreateTaskForm, Tasks } from "components";
 import { realmApp } from "../lib/realm";
 import router from "next/router";
 
-const Home: NextPage = () => {
+const MyTasks = (): React.ReactElement => {
   const [isRefreshing, setRefreshing] = useState<boolean>(true);
 
   const isAuthenticated = !!realmApp.currentUser;
@@ -28,4 +27,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default MyTasks;

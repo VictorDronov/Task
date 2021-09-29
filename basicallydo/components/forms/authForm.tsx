@@ -1,6 +1,6 @@
-import { useRouter } from "next/router";
+import router from "next/router";
 import React, { useState } from "react";
-import { SubmitHandler, useForm, Validate } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import * as Realm from "realm-web";
 import { realmApp } from "../../lib/realm";
 
@@ -23,7 +23,6 @@ const SignInForm = (): React.ReactElement => {
     message: "",
   });
   const [signUp, setSignUp] = useState(false);
-  const router = useRouter();
 
   const onSubmit: SubmitHandler<LoginForm> = async (data) => {
     try {
@@ -39,7 +38,7 @@ const SignInForm = (): React.ReactElement => {
         );
         const user: Realm.User = await realmApp.logIn(credentials);
         if (user) {
-          router.push("/");
+          router.push("/my-tasks");
         }
       } else {
         const credentials = Realm.Credentials.emailPassword(
@@ -48,7 +47,7 @@ const SignInForm = (): React.ReactElement => {
         );
         const user: Realm.User = await realmApp.logIn(credentials);
         if (user) {
-          router.push("/");
+          router.push("/my-tasks");
         }
       }
     } catch (err) {
