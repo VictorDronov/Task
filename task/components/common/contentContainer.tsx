@@ -2,14 +2,18 @@ import React from "react";
 import Header from "./header";
 
 interface IProps {
+  header: boolean;
   children?: JSX.Element | JSX.Element[];
 }
 
-const ContentWrapper = ({ children }: IProps): React.ReactElement => {
+const ContentWrapper = ({
+  children,
+  header = true,
+}: IProps): React.ReactElement => {
   return (
     <div className="min-h-screen bg-brand-secondary">
       <div className="container flex flex-col justify-center text-center text-brand-text">
-        <Header />
+        {header && <Header />}
         {children}
       </div>
     </div>
