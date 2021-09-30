@@ -45,7 +45,7 @@ const Tasks = ({
       <h2 className="mt-6 mb-6 font-semibold text-brand-primary">Your Tasks</h2>
       <div className="task-wrapper">
         <h3 className="mb-3">Unfinished Tasks</h3>
-        {tasks && tasks?.length > 0 ? (
+        {tasks && tasks?.length >= 0 ? (
           tasks?.map((details) => (
             <>
               {details.complete === false ? (
@@ -56,12 +56,19 @@ const Tasks = ({
                   isRefreshing={isRefreshing}
                 />
               ) : (
-                <div className="relative flex items-center justify-center w-6/12 m-auto mb-5">
-                  {plant && (
-                    <Image src={plant} alt="sprout" width={200} height={200} />
-                  )}
-                  <p className="absolute bottom-0 ">No Tasks To Complete</p>
-                </div>
+                tasks?.length === 0 && (
+                  <div className="relative flex items-center justify-center w-6/12 m-auto mb-5">
+                    {plant && (
+                      <Image
+                        src={plant}
+                        alt="sprout"
+                        width={200}
+                        height={200}
+                      />
+                    )}
+                    <p className="absolute bottom-0 ">No Tasks To Complete</p>
+                  </div>
+                )
               )}
             </>
           ))
@@ -74,7 +81,7 @@ const Tasks = ({
           </div>
         )}
         <h3 className="mb-3">Finished Tasks</h3>
-        {tasks && tasks?.length ? (
+        {tasks && tasks?.length > 0 ? (// add logic for when there are tasks but are not complete?
           tasks?.map((details) => (
             <>
               {details.complete === true ? (
@@ -85,12 +92,19 @@ const Tasks = ({
                   isRefreshing={isRefreshing}
                 />
               ) : (
-                <div className="relative flex items-center justify-center w-6/12 m-auto mb-5">
-                  {plant && (
-                    <Image src={plant} alt="sprout" width={200} height={200} />
-                  )}
-                  <p className="absolute bottom-0 ">No Tasks Complete</p>
-                </div>
+                tasks?.length === 0 && (
+                  <div className="relative flex items-center justify-center w-6/12 m-auto mb-5">
+                    {plant && (
+                      <Image
+                        src={plant}
+                        alt="sprout"
+                        width={200}
+                        height={200}
+                      />
+                    )}
+                    <p className="absolute bottom-0 ">No Tasks Complete</p>
+                  </div>
+                )
               )}
             </>
           ))
