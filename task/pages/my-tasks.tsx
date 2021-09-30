@@ -22,7 +22,7 @@ const MyTasks = (): React.ReactElement => {
   }, [isAuthenticated]);
 
   return (
-    <ContentWrapper>
+    <ContentWrapper header>
       <CreateTaskForm setRefreshing={setRefreshing} />
       <Tasks
         isRefreshing={isRefreshing}
