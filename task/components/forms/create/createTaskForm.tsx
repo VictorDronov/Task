@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FaPlus } from "react-icons/fa";
-import { mongodb, realmApp } from "../../lib/realm";
+import { mongodb, realmApp } from "../../../lib/realm";
 
 interface Form {
   title: string;

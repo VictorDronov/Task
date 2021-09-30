@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as Realm from "realm-web";
-import { realmApp } from "../../lib/realm";
+import { realmApp } from "../../../lib/realm";
 import { useRouter } from "next/router";
 
 interface LoginForm {
@@ -11,7 +11,7 @@ interface LoginForm {
   confirmPassword: string;
 }
 
-const SignInForm = (): React.ReactElement => {
+const AuthForm = (): React.ReactElement => {
   const router = useRouter();
   const {
     watch,
@@ -157,4 +157,4 @@ const SignInForm = (): React.ReactElement => {
   );
 };
 
-export default SignInForm;
+export default AuthForm;
