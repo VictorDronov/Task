@@ -57,7 +57,9 @@ const Tasks = ({
                 />
               ) : (
                 <div className="relative flex items-center justify-center w-6/12 m-auto mb-5">
-                  <Image src={plant} alt="sprout" width={200} height={200} />
+                  {plant && (
+                    <Image src={plant} alt="sprout" width={200} height={200} />
+                  )}
                   <p className="absolute bottom-0 ">No Tasks To Complete</p>
                 </div>
               )}
@@ -65,7 +67,9 @@ const Tasks = ({
           ))
         ) : (
           <div className="relative flex items-center justify-center w-6/12 m-auto mb-5">
-            <Image src={plant} alt="sprout" width={200} height={200} />
+            {plant && (
+              <Image src={plant} alt="sprout" width={200} height={200} />
+            )}
             <p className="absolute bottom-0 ">No Tasks To Complete</p>
           </div>
         )}
@@ -82,7 +86,9 @@ const Tasks = ({
                 />
               ) : (
                 <div className="relative flex items-center justify-center w-6/12 m-auto mb-5">
-                  <Image src={plant} alt="sprout" width={200} height={200} />
+                  {plant && (
+                    <Image src={plant} alt="sprout" width={200} height={200} />
+                  )}
                   <p className="absolute bottom-0 ">No Tasks Complete</p>
                 </div>
               )}
@@ -90,7 +96,9 @@ const Tasks = ({
           ))
         ) : (
           <div className="relative flex items-center justify-center w-6/12 m-auto mb-5">
-            <Image src={plant} alt="sprout" width={200} height={200} />
+            {plant && (
+              <Image src={plant} alt="sprout" width={200} height={200} />
+            )}
             <p className="absolute bottom-0 ">No Tasks Complete</p>
           </div>
         )}

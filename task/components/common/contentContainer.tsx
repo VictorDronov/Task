@@ -1,5 +1,5 @@
 import React from "react";
-import { Header } from "..";
+import Header from "./header";
 
 interface IProps {
   children?: JSX.Element | JSX.Element[];
