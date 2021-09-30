@@ -1,7 +1,9 @@
-import router from "next/router";
+import { useRouter } from "next/router";
 import React from "react";
 
 const Landing = (): React.ReactElement => {
+  const router = useRouter();
+
   return (
     <div className="bg-brand-secondary ">
       <div className="flex flex-col items-center justify-center max-w-sm min-h-screen m-auto ">
@@ -13,7 +15,7 @@ const Landing = (): React.ReactElement => {
             Task is a app for you to make a list of tasks to complete. (duh)
           </p>
           <p className="text-lg text-center ">
-            To get started{" "}
+            To get started
             <a
               className="font-bold text-green-500 cursor-pointer hover:opacity-80"
               onClick={() => router.push("/auth")}

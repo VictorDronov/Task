@@ -1,8 +1,8 @@
-import router from "next/router";
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as Realm from "realm-web";
 import { realmApp } from "../../lib/realm";
+import { useRouter } from "next/router";
 
 interface LoginForm {
   username: string;
@@ -12,6 +12,7 @@ interface LoginForm {
 }
 
 const SignInForm = (): React.ReactElement => {
+  const router = useRouter();
   const {
     watch,
     register,
