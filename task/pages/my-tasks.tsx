@@ -3,6 +3,7 @@ import { ContentWrapper, CreateTaskForm, Tasks } from "components";
 import { realmApp } from "../lib/realm";
 import { useRouter } from "next/router";
 import RenderCreateTaskForm from "@components/forms/create/renderCreateTaskModal";
+import AddButton from "@components/common/addTaskbutton";
 
 const MyTasks = (): React.ReactElement => {
   const router = useRouter();
@@ -28,7 +29,7 @@ const MyTasks = (): React.ReactElement => {
   }, [isAuthenticated]);
 
   return (
-    <ContentWrapper header>
+    <ContentWrapper header footer>
       <RenderCreateTaskForm
         isVisibile={isVisibile}
         setIsVisibile={setIsVisibile}

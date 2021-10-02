@@ -38,8 +38,8 @@ const Tasks = ({
   return (
     <>
       <h2 className="mt-6 mb-6 font-semibold text-brand-primary">Your Tasks</h2>
-      <div className="task-wrapper">
-        <h3 className="mb-3">Unfinished Tasks</h3>
+      <div className="pb-12 task-wrapper">
+        <h3 className="mb-3 text-green-500">Unfinished Tasks</h3>
         <RenderTask
           tasks={tasks}
           setRefreshing={setRefreshing}
@@ -53,7 +53,7 @@ const Tasks = ({
             <p className="absolute bottom-0 ">No Tasks To Complete</p>
           </div>
         )}
-        <h3 className="mb-3">Finished Tasks</h3>
+        <h3 className="mb-3 text-green-500">Finished Tasks</h3>
         <RenderTask
           tasksComplete
           tasks={tasks}
