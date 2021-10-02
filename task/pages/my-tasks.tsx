@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { ContentWrapper, CreateTaskForm, Tasks } from "components";
+import { ContentWrapper, Tasks, RenderCreateTaskForm } from "components";
 import { realmApp } from "../lib/realm";
 import { useRouter } from "next/router";
-import RenderCreateTaskForm from "@components/forms/create/renderCreateTaskModal";
-import AddButton from "@components/common/addTaskbutton";
 
 const MyTasks = (): React.ReactElement => {
   const router = useRouter();

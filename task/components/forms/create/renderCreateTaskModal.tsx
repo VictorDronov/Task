@@ -1,8 +1,7 @@
 import AddButton from "@components/common/addTaskbutton";
 import { ModalComponentProps } from "@components/common/modal/modal";
 import { CreateTaskForm } from "@components/index";
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { FaPlus } from "react-icons/fa";
+import React, { Dispatch, SetStateAction } from "react";
 import { Modal } from "../../common/modal";
 
 export interface CreateTaskModalProps extends ModalComponentProps {
