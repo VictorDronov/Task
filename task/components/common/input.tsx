@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FieldErrors, RegisterOptions, UseFormRegister } from "react-hook-form";
+import { FieldErrors } from "react-hook-form";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const Input = ({
