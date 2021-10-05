@@ -29,10 +29,10 @@ const Task = ({
           {details.complete === true ? (
             <h3 className="ml-3 line-through">{details.title}</h3>
           ) : (
-            <>
+            <div className="flex flex-row">
               <div className="p-3 border-2 border-solid rounded-md cursor-pointer border-brand-primary hover:opacity-80" />
               <h3 className="ml-3">{details.title}</h3>
-            </>
+            </div>
           )}
           {isShowingDetails ? (
             <FaAngleUp
