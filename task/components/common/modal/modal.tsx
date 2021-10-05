@@ -29,7 +29,9 @@ export const Component = ({
         className={`cursor-auto w-full mx-auto my-auto rounded-md flex flex-col flex-nowrap relative`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div>{showContents && <Component closeModal={closeModal} />}</div>
+        <div className="w-11/12 m-auto">
+          {showContents && <Component closeModal={closeModal} />}
+        </div>
       </div>
     </div>
   );

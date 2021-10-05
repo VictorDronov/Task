@@ -12,7 +12,7 @@ const AddButton = ({ setIsVisibile }: AddButtonProps): React.ReactElement => {
       onClick={() => setIsVisibile(true)}
     >
       <div className="p-2 rounded-lg bg-brand-lightSecondary">
-        <FaPlus className="self-center text-green-500" />
+        <FaPlus className="self-center text-brand-primary" />
       </div>
       <p className="self-center ml-3 text-base font-bold">Add a task.</p>
     </div>

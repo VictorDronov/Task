@@ -11,7 +11,6 @@ export interface Task {
 export interface ITasksProps {
   isRefreshing: boolean;
   setRefreshing: Dispatch<SetStateAction<boolean>>;
-  plant?: string;
   complete?: number;
 }
 

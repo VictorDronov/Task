@@ -14,12 +14,12 @@ const ContentWrapper = ({
   header = false,
 }: IProps): React.ReactElement => {
   return (
-    <div className="min-h-screen bg-brand-secondary">
+    <div className="h-screen min-h-screen bg-brand-secondary">
       <div className="container flex flex-col justify-center text-center text-brand-text">
         {header && <Header />}
         {children}
-        {footer && <Footer />}
       </div>
+      {footer && <Footer />}
     </div>
   );
 };

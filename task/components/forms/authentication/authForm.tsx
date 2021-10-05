@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import * as Realm from "realm-web";
 import { realmApp } from "../../../lib/realm";
 import { useRouter } from "next/router";
+import { ErrorMessage } from "components";
 
 interface LoginForm {
   username: string;
@@ -68,37 +69,21 @@ const AuthForm = (): React.ReactElement => {
         {error?.bool === true && (
           <p className="w-full text-center text-red-600">{error.message}</p>
         )}
-        {errors.password && (
-          <p className="w-full text-center text-red-600">
-            {errors.password.message}
-          </p>
-        )}
-        {errors.email && (
-          <p className="w-full text-center text-red-600">
-            {errors.email.message}
-          </p>
-        )}
-        {errors.confirmPassword && (
-          <p className="w-full text-center text-red-600">
-            {errors.confirmPassword.message}
-          </p>
-        )}
-        {/* {signUp && (
-          <label>
-            <input
-              placeholder="Your Name"
-              {...register("username", {
-                required: "Please enter your name *",
-              })}
-            />
-          </label>
-        )} */}
+        <ErrorMessage name={errors.email} message={errors.email?.message} />
+        <ErrorMessage
+          name={errors.password}
+          message={errors.password?.message}
+        />
+        <ErrorMessage
+          name={errors.confirmPassword}
+          message={errors.confirmPassword?.message}
+        />
         <label>
           <input
             placeholder="Email"
             type="email"
             {...register("email", {
-              required: "Please enter your email *",
+              required: "Please enter your email!",
             })}
           />
         </label>
@@ -107,7 +92,7 @@ const AuthForm = (): React.ReactElement => {
             placeholder="Password"
             type="password"
             {...register("password", {
-              required: "Please enter your password *",
+              required: "Please enter your password!",
             })}
           />
         </label>
@@ -120,7 +105,7 @@ const AuthForm = (): React.ReactElement => {
               {...register("confirmPassword", {
                 validate: (value) =>
                   value === watch("password") || "Passwords must match",
-                required: "Passwords must be the same!",
+                required: "Passwords do not match!",
               })}
             />
           </label>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FieldErrors } from "react-hook-form";
+import { FieldErrors, RegisterOptions, useForm } from "react-hook-form";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const Input = ({
@@ -7,13 +7,13 @@ const Input = ({
   name,
   label,
   rule = {},
-  register,
   type = "text",
   errors = {},
   showPassword,
   placeholder = "",
   ...rest
 }: InputProps): React.ReactElement => {
+  const { register } = useForm();
   // store the type prop in state so that it can be changed to show/hide the value in a password input
   const [inputType, setInputType] = useState(type);
   /**
@@ -31,7 +31,7 @@ const Input = ({
         <input
           id={id}
           type={inputType}
-          {...register(rule)}
+          {...register(type)}
           autoComplete="off"
           autoCapitalize="off"
           placeholder={placeholder}
@@ -53,9 +53,9 @@ const Input = ({
         ) : null}
       </div>
       {errors[name] && (
-        <div>
-          <span>*</span> {errors[name].message}
-        </div>
+        <p className="w-full text-center text-red-600">
+          {errors[name].message}
+        </p>
       )}
     </div>
   );
@@ -66,7 +66,7 @@ interface InputProps
   id: string;
   name: string;
   label?: string;
-  register?: any;
+  // register?: RegisterOptions;
   rule?: {};
   type?: string;
   errors?: FieldErrors;
