@@ -24,7 +24,7 @@ p {
 }
 
 label {
-  @apply flex flex-row justify-between leading-7 text-left text-white p-3 mt-5 border-2 border-green-500 border-solid rounded-md bg-brand-secondary;
+  @apply flex flex-row justify-between leading-7 text-left text-white p-3 mt-5 border-2 border-brand-primary border-solid rounded-md bg-brand-secondary;
 }
 
 input {

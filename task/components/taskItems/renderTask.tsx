@@ -1,38 +1,31 @@
 import React from "react";
 import Task from "./task";
-import { TaskItem } from "./taskInterfaces";
-import { mongodb } from "../../lib/realm";
+import { ITaskProps } from "./taskInterfaces";
 
 const RenderTask = ({
+  updateTask,
+  deleteTask,
   tasks,
   isRefreshing,
   setRefreshing,
-}: TaskItem): React.ReactElement => {
-  const Delete = (id: string) => {
-    mongodb
-      ?.db("user_tasks")
-      .collection("tasks")
-      .deleteOne({ _id: id })
-      .then(() => {
-        setRefreshing(!isRefreshing);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
+}: ITaskProps): React.ReactElement => {
   return (
-    <>
-      {tasks?.map((details) => (
+    <div>
+      {tasks?.map(({ _id, complete, description, title, user_id }) => (
         <Task
-          Delete={Delete}
+          _id={_id}
+          complete={complete}
+          description={description}
+          title={title}
+          user_id={user_id}
+          updateTask={updateTask}
+          deleteTask={deleteTask}
           key={Math.random()}
-          details={details}
           setRefreshing={setRefreshing}
           isRefreshing={isRefreshing}
         />
       ))}
-    </>
+    </div>
   );
 };
 

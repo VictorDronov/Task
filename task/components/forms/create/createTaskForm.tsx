@@ -17,8 +17,9 @@ const TaskForm = ({
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<FormProps>({
+    mode: "onChange",
     defaultValues: { title: "", description: "" },
   });
 
@@ -37,6 +38,9 @@ const TaskForm = ({
           setRefreshing(true);
           reset();
           closeModal();
+        })
+        .catch((err) => {
+          console.log("An Error occured when creating a task!", err);
         });
     }
   };
@@ -58,6 +62,14 @@ const TaskForm = ({
               autoComplete="on"
               placeholder="Title"
               {...register("title", {
+                minLength: {
+                  value: 3,
+                  message: "Title can not be shorter than 3 characters.",
+                },
+                maxLength: {
+                  value: 15,
+                  message: "Title can not exceed 15 characters.",
+                },
                 required: "Please enter your Task title.",
               })}
             />
@@ -68,21 +80,29 @@ const TaskForm = ({
               className="w-full placeholder-gray-500 border-none outline-none resize-none bg-brand-secondary text-brand-text"
               placeholder="Description"
               {...register("description", {
+                minLength: {
+                  value: 8,
+                  message: "Description can not be shorter than 8 characters.",
+                },
+                maxLength: {
+                  value: 150,
+                  message: "Description can not exceed 150 characters.",
+                },
                 required: "Please enter your Task descirption.",
               })}
             />
           </label>
           <div className="flex flex-row w-full justify-evenly">
             <button
-              // disabled
-              className="py-3 mt-5 font-bold transition bg-green-400 disabled:cursor-default hover:bg-green-500 text-brand-secondary disabled:bg-green-500"
+              className="py-3 mt-5 font-bold transition bg-brand-primary hover:opacity-80 text-brand-secondary"
               onClick={closeModal}
             >
               Never Mind
             </button>
             <button
-              className="py-3 mt-5 font-bold transition bg-green-400 hover:bg-green-500 text-brand-secondary"
+              className="py-3 mt-5 font-bold transition bg-brand-primary disabled:opacity-80 hover:opacity-80 text-brand-secondary"
               type="submit"
+              disabled={!isValid}
             >
               Add Task
             </button>
