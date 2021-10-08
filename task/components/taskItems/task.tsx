@@ -11,12 +11,14 @@ const Task = ({
   completeTask,
 }: TaskProps): React.ReactElement => {
   // const [isShowingDetails, setShowingDetails] = useState<boolean>(false);
+  const [deleting, setDeleting] = useState<boolean>(false);
 
-  const DelayDelete = (comp: boolean) => {
+  const DelayDelete = () => {
     if (complete === true) {
-      console.log("called");
+      setDeleting(true);
       setTimeout(() => {
         deleteTask(_id, complete === true);
+        setDeleting(false);
       }, 5000);
     } else {
       return;
@@ -24,15 +26,13 @@ const Task = ({
   };
 
   useEffect(() => {
-    DelayDelete(complete);
+    DelayDelete();
   });
 
   return (
     <div
       className={`${
-        complete
-          ? "opacity-0 delay-700 transition-all duration-1000 ease-in-out"
-          : ""
+        deleting ? "animate-fade-out" : ""
       } w-full p-3 m-auto mb-3 bg-gray-800 rounded-xl md:w-6/12 `}
     >
       <div className="flex flex-row">

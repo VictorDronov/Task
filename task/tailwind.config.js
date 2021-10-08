@@ -8,9 +8,22 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      backgroundImage: (theme) => ({
-        "hero-pattern": "url('/images/signupBackground.jpg')",
-      }),
+      keyframes: {
+        "fade-out": {
+          "0%": {
+            opacity: "1",
+          },
+          "50%": {
+            opacity: "0.7",
+          },
+          "100%": {
+            opacity: "1",
+          },
+        },
+      },
+      animation: {
+        "fade-out": "fade-out 1s infinite ease-out",
+      },
       colors: {
         brand: {
           primary: "#467CF0",
