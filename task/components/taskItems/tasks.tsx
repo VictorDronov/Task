@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { mongodb, realmApp } from "../../lib/realm";
-import RenderTask from "./renderTask";
-import { TaskProps, TaskStateProps } from "./taskInterfaces";
+import RenderTask from "./RenderTask";
+import { TaskProps, TaskStateProps } from "./TaskInterfaces";
 import Image from "next/image";
 
 const Tasks = ({
@@ -26,11 +26,11 @@ const Tasks = ({
     }
   }, [isRefreshing, setRefreshing]);
 
-  const Delete = (id: string) => {
+  const Delete = (id: string, complete: boolean) => {
     mongodb
       ?.db("user_tasks")
       .collection("tasks")
-      .deleteOne({ _id: id })
+      .deleteOne({ _id: id, complete: complete === true })
       .then(() => {
         setRefreshing(!isRefreshing);
       })
@@ -39,7 +39,7 @@ const Tasks = ({
       });
   };
 
-  const Update = (id: string, complete: boolean) => {
+  const UpdateComplete = (id: string, complete: boolean) => {
     const query = { _id: id };
     const update = {
       $set: {
@@ -53,7 +53,6 @@ const Tasks = ({
       .then((result) => {
         const { matchedCount, modifiedCount } = result;
         if (matchedCount && modifiedCount) {
-          console.log(`Successfully updated the item.`);
           setRefreshing(!isRefreshing);
         }
       })
@@ -67,9 +66,9 @@ const Tasks = ({
           <h2 className="mt-6 mb-6 font-semibold text-brand-primary">
             Tasks - {tasks ? `${tasks?.length}` : 0}
           </h2>
-          <div className="pb-12 task-wrapper">
+          <div className="task-wrapper">
             <RenderTask
-              updateTask={Update}
+              completeTask={UpdateComplete}
               deleteTask={Delete}
               tasks={tasks}
               setRefreshing={setRefreshing}

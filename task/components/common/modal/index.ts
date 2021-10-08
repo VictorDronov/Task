@@ -1,1 +1,1 @@
-export * as Modal from "./modal";
+export * as Modal from "./Modal";

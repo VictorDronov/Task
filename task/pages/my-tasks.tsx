@@ -3,6 +3,7 @@ import { ContentWrapper, Tasks, RenderCreateTaskForm } from "components";
 
 const MyTasks = (): React.ReactElement => {
   const [isRefreshing, setRefreshing] = useState<boolean>(true);
+  const [isLoading, setLoading] = useState<boolean>(false);
   const [isVisibile, setIsVisibile] = useState(false);
 
   const closeModal = () => {
@@ -12,15 +13,14 @@ const MyTasks = (): React.ReactElement => {
   return (
     <ContentWrapper header footer>
       <RenderCreateTaskForm
+        setLoading={setLoading}
+        isLoading={isLoading}
         isVisibile={isVisibile}
         setIsVisibile={setIsVisibile}
         setRefreshing={setRefreshing}
         closeModal={closeModal}
       />
-      <Tasks
-        isRefreshing={isRefreshing}
-        setRefreshing={setRefreshing}
-      />
+      <Tasks isRefreshing={isRefreshing} setRefreshing={setRefreshing} />
     </ContentWrapper>
   );
 };

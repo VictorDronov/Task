@@ -1,9 +1,9 @@
 import React from "react";
-import Task from "./task";
-import { ITaskProps } from "./taskInterfaces";
+import Task from "./Task";
+import { ITaskProps } from "./TaskInterfaces";
 
 const RenderTask = ({
-  updateTask,
+  completeTask,
   deleteTask,
   tasks,
   isRefreshing,
@@ -11,14 +11,13 @@ const RenderTask = ({
 }: ITaskProps): React.ReactElement => {
   return (
     <div>
-      {tasks?.map(({ _id, complete, description, title, user_id }) => (
+      {tasks?.map(({ _id, complete, task, user_id }) => (
         <Task
           _id={_id}
           complete={complete}
-          description={description}
-          title={title}
+          task={task}
           user_id={user_id}
-          updateTask={updateTask}
+          completeTask={completeTask}
           deleteTask={deleteTask}
           key={Math.random()}
           setRefreshing={setRefreshing}

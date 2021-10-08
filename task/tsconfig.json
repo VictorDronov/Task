@@ -22,6 +22,6 @@
       "@public/*": ["public/*"],
       "@services/*": ["services/*"],
     }  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.svg", "components/taskItems/tasks.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.svg", "components/taskItems/Tasks.tsx"],
   "exclude": ["node_modules"]
 }
