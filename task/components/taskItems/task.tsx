@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaAngleDown, FaAngleUp, FaCheck } from "react-icons/fa";
-import { ITaskProps, TaskProps } from "./TaskInterfaces";
+import { TaskProps } from "./TaskInterfaces";
 
 const Task = ({
   _id,
@@ -37,27 +37,23 @@ const Task = ({
     >
       <div className="flex flex-row">
         <div className="flex self-center justify-between w-full">
-          {complete === true ? (
-            <div className="flex flex-row">
-              <div
-                className="self-center p-1 border-2 border-solid rounded-md cursor-pointer border-brand-primary hover:opacity-80 bg-brand-primary"
-                onClick={() => completeTask(_id, !complete)}
-              >
-                <FaCheck className="text-brand-secondary" />
-              </div>
-              <h3 className="ml-3 font-semibold tracking-wider line-through">
-                {task}
-              </h3>
-            </div>
-          ) : (
-            <div className="flex flex-row">
-              <div
-                className="p-3 border-2 border-solid rounded-md cursor-pointer border-brand-primary hover:opacity-80"
-                onClick={() => completeTask(_id, !complete)}
+          <div className="flex flex-row">
+            <div
+              className={`self-center p-1 border-2 border-solid rounded-lg cursor-pointer border-brand-primary hover:opacity-80 ${
+                complete === true && "bg-brand-primary"
+              }`}
+              onClick={() => completeTask(_id, !complete)}
+            >
+              <FaCheck
+                className={`${
+                  complete ? "visible text-brand-secondary" : "invisible"
+                }`}
+                size="20"
               />
-              <h3 className="ml-3 font-semibold tracking-wider">{task}</h3>
             </div>
-          )}
+            <h3 className="ml-3 font-semibold tracking-wider">{task}</h3>
+          </div>
+          {/* )} */}
           {/* {isShowingDetails ? (
             <FaAngleUp
               size={20}

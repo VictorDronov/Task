@@ -8,7 +8,7 @@ interface AddButtonProps {
 const AddButton = ({ setIsVisibile }: AddButtonProps): React.ReactElement => {
   return (
     <div
-      className="flex flex-row p-2 m-auto mt-5 border-2 border-gray-700 border-solid rounded-md cursor-pointer hover:opacity-80 md:w-96 w-80"
+      className="flex flex-row w-full p-2 m-auto mt-5 border-2 border-gray-700 border-solid rounded-md cursor-pointer hover:opacity-80 md:w-2/4"
       onClick={() => setIsVisibile(true)}
     >
       <div className="p-2 rounded-lg bg-brand-lightSecondary">

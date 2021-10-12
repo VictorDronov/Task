@@ -63,7 +63,7 @@ const Tasks = ({
     <div>
       {tasks?.length !== 0 ? (
         <div>
-          <h2 className="mt-6 mb-6 font-semibold text-brand-primary">
+          <h2 className="m-auto mt-6 mb-6 text-xl font-semibold text-left text-brand-primary md:w-2/4">
             Tasks - {tasks ? `${tasks?.length}` : 0}
           </h2>
           <div className="task-wrapper">
@@ -78,9 +78,9 @@ const Tasks = ({
         </div>
       ) : (
         <div>
-          <h2 className="mt-6 mb-6 font-semibold text-brand-primary">
+          {/* <h2 className="mt-6 mb-6 font-semibold text-brand-primary">
             You have no tasks!
-          </h2>
+          </h2> */}
           <Image
             src="/images/plantleaves.png"
             alt=""
@@ -88,8 +88,8 @@ const Tasks = ({
             height={300}
           />
           <p className="text-lg">
-            Get started by clicking on{" "}
-            <span className="text-brand-primary">Add a task</span> above.
+            Get started by{" "}
+            <span className="text-brand-primary">Adding a task</span> above.
           </p>
         </div>
       )}

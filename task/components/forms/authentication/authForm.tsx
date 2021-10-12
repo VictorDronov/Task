@@ -78,7 +78,7 @@ const AuthForm = (): React.ReactElement => {
           name={errors.confirmPassword}
           message={errors.confirmPassword?.message}
         />
-        <label>
+        <label className="label-preset">
           <input
             placeholder="Email"
             type="email"
@@ -87,7 +87,7 @@ const AuthForm = (): React.ReactElement => {
             })}
           />
         </label>
-        <label>
+        <label className="label-preset">
           <input
             placeholder="Password"
             type="password"
@@ -97,7 +97,7 @@ const AuthForm = (): React.ReactElement => {
           />
         </label>
         {signUp && (
-          <label>
+          <label className="label-preset">
             <input
               id="confirmPassword"
               type="password"

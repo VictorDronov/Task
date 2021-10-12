@@ -13,7 +13,13 @@ module.exports = {
           "0%": {
             opacity: "1",
           },
+          "25%": {
+            opacity: "0.7",
+          },
           "50%": {
+            opacity: "0.4",
+          },
+          "75%": {
             opacity: "0.7",
           },
           "100%": {
@@ -31,6 +37,9 @@ module.exports = {
           lightSecondary: "#373737",
           text: "#FFFFFF",
         },
+      },
+      borderWidth: {
+        3: "3px",
       },
     },
   },

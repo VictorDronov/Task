@@ -11,9 +11,9 @@ interface FormProps {
 
 const TaskForm = ({
   isLoading,
-  closeModal,
   setLoading,
   setRefreshing,
+  setIsVisibile,
 }: CreateTaskModalProps): React.ReactElement => {
   const {
     register,
@@ -40,8 +40,8 @@ const TaskForm = ({
           if (res) {
             setLoading(false);
             setRefreshing(true);
+            setIsVisibile(false);
             reset();
-            closeModal();
           }
         })
         .catch((err) => {
@@ -52,39 +52,33 @@ const TaskForm = ({
 
   return !isLoading ? (
     <div className="w-full m-auto">
-      <ErrorMessage name={errors.task} message={errors.task?.message} />
-      <div className="flex-col items-center justify-center max-w-sm m-auto mt-8">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col w-full"
-        >
-          <label className="mb-3 text-black">
-            <textarea
-              autoComplete="on"
-              className="w-full placeholder-gray-500 border-none outline-none resize-none bg-brand-secondary text-brand-text"
-              placeholder="Your Task"
-              {...register("task", {
-                minLength: {
-                  value: 8,
-                  message: "Task can not be shorter than 8 characters.",
-                },
-                maxLength: {
-                  value: 150,
-                  message: "Task can not exceed 150 characters.",
-                },
-                required: "Please enter your Task descirption.",
-              })}
-            />
-          </label>
-          <div className="flex flex-row w-full justify-evenly">
+      <ErrorMessage
+        name={errors.task}
+        message={errors.task?.message}
+        styles="bg-brand-secondary h-8 flex justify-center text-center"
+      />
+      <div className="flex-col items-center justify-center m-auto md:w-2/4">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex flex-row justify-center w-full p-2 align-middle border-2 border-solid rounded-md border-brand-primary bg-brand-secondary">
+            <label className="flex w-full text-black align-middle">
+              <input
+                autoComplete="on"
+                placeholder="Your Task"
+                {...register("task", {
+                  minLength: {
+                    value: 8,
+                    message: "Task can not be shorter than 8 characters.",
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: "Task can not exceed 20 characters.",
+                  },
+                  required: "Please enter your Task.",
+                })}
+              />
+            </label>
             <button
-              className="py-3 mt-5 font-bold transition bg-brand-primary hover:opacity-80 text-brand-secondary"
-              onClick={closeModal}
-            >
-              Never Mind
-            </button>
-            <button
-              className="py-3 mt-5 font-bold transition bg-brand-primary disabled:opacity-80 hover:opacity-80 text-brand-secondary"
+              className="z-50 w-2/4 py-2 font-bold transition bg-brand-primary disabled:opacity-80 disabled:cursor-not-allowed hover:opacity-80 text-brand-secondary"
               type="submit"
               disabled={!isValid}
             >

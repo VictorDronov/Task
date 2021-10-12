@@ -23,7 +23,7 @@ p {
   @apply text-sm;
 }
 
-label {
+.label-preset {
   @apply flex flex-row justify-between leading-7 text-left text-white p-3 mt-5 border-2 border-brand-primary border-solid rounded-md bg-brand-secondary;
 }
 
