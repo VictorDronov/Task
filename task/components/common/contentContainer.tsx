@@ -19,7 +19,6 @@ const ContentWrapper = ({
         {header && <Header />}
         {children}
       </div>
-
       {footer && <Footer />}
     </div>
   );
