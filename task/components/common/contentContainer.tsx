@@ -1,6 +1,6 @@
 import React from "react";
-import Footer from "./Footer";
-import Header from "./Header";
+import Footer from "./FooterSlice";
+import Header from "./HeaderSlice";
 
 interface IProps {
   header?: boolean;
