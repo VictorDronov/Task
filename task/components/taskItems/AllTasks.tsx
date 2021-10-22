@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { mongodb, realmApp } from "../../lib/realm";
-import RenderTask from "./RenderTask";
+import RenderTask from "./RenderTaskItem";
 import { TaskProps, TaskStateProps } from "./TaskInterfaces";
 import Image from "next/image";
 

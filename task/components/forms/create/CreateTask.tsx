@@ -3,7 +3,7 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FaSpinner } from "react-icons/fa";
 import { mongodb, realmApp } from "../../../lib/realm";
-import { CreateTaskModalProps } from "./RenderCreateTaskModal";
+import { CreateTaskModalProps } from "./RenderCreateTask";
 
 interface FormProps {
   task: string;

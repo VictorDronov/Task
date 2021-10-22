@@ -1,6 +1,6 @@
 import { FaLeaf } from "react-icons/fa";
 import React from "react";
-import AuthForm from "./AuthForm";
+import AuthForm from "./Authentication";
 
 const RenderAuth = (): React.ReactElement => {
   return (
