@@ -1,6 +1,6 @@
 import React from "react";
 import Task from "./TaskItem";
-import { ITaskProps } from "./TaskInterfaces";
+import { ITaskProps } from "./TaskItemInterfaces";
 
 const RenderTask = ({
   completeTask,

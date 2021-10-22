@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaAngleDown, FaAngleUp, FaCheck } from "react-icons/fa";
-import { TaskProps } from "./TaskInterfaces";
+import { TaskProps } from "./TaskItemInterfaces";
 
 const Task = ({
   _id,
