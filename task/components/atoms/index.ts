@@ -1,4 +1,4 @@
 export * from "./CreateTaskButton";
-export * from "./ErrorItem";
+export { default as ErrorMessage } from "./ErrorMessage";
 export * from "./FooterSlice";
 export * from "./HeaderSlice";

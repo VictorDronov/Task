@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as Realm from "realm-web";
-import { mongodb, realmApp } from "../../../lib/realm";
+import { realmApp } from "../../../lib/realm";
 import { useRouter } from "next/router";
-import { ErrorMessage } from "components";
+import { ErrorMessage } from "@components/atoms";
 
 interface LoginForm {
   username: string;

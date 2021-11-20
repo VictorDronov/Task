@@ -1,4 +1,4 @@
-import ErrorMessage from "@components/atoms/ErrorItem";
+import { ErrorMessage } from "@components/atoms";
 import { useClickOutside } from "helpers";
 import React, { useCallback } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
