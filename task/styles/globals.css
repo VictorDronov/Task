@@ -46,3 +46,11 @@ button {
 .task-wrapper {
   @apply flex flex-col justify-center flex-wrap;
 }
+
+.show {
+  @apply absolute top-0 right-0;
+}
+
+.hide {
+  @apply hidden;
+}

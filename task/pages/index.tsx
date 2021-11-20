@@ -7,7 +7,7 @@ const Landing = (): React.ReactElement => {
   const router = useRouter();
 
   return (
-    <ContentWrapper header={false}>
+    <ContentWrapper>
       <div className="flex flex-col max-w-md min-h-screen m-auto">
         <div className="relative flex justify-center w-full font-bold text-center text-transparent cursor-default mt-7">
           <Image
@@ -22,7 +22,7 @@ const Landing = (): React.ReactElement => {
         </div>
         <div className="text-brand-primary">
           <p className="mb-6 text-lg text-center md:text-xl">
-            Task is a app for you to make a list of tasks to complete. (duh)
+            Task is a app for you to make a list of tasks to complete.
           </p>
           <p className="text-lg text-center ">
             To get started

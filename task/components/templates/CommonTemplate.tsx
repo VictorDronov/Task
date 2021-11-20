@@ -1,6 +1,6 @@
 import React from "react";
-import Footer from "../FooterSlice";
-import Header from "../HeaderSlice";
+import Footer from "../atoms/FooterSlice";
+import Header from "../atoms/HeaderSlice";
 
 interface IProps {
   header?: boolean;
@@ -14,7 +14,7 @@ const ContentWrapper = ({
   header = false,
 }: IProps): React.ReactElement => {
   return (
-    <div className="h-screen min-h-screen bg-brand-secondary">
+    <div className="min-h-screen bg-brand-secondary">
       <div className="container flex flex-col justify-center text-center text-brand-text">
         {header && <Header />}
         {children}

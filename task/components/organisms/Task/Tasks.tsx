@@ -1,6 +1,6 @@
 import React from "react";
-import Task from "./TaskItem";
-import { ITaskProps } from "./TaskItemInterfaces";
+import TaskItem from "./TaskItem";
+import { ITaskProps } from "./interfaces/TaskItemInterfaces";
 
 const RenderTask = ({
   completeTask,
@@ -12,7 +12,7 @@ const RenderTask = ({
   return (
     <div>
       {tasks?.map(({ _id, complete, task, user_id }) => (
-        <Task
+        <TaskItem
           _id={_id}
           complete={complete}
           task={task}

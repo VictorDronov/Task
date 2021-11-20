@@ -1,6 +1,6 @@
-import AddButton from "@components/common/CreateTaskButton";
-import { CreateTaskForm } from "@components/index";
 import React, { Dispatch, SetStateAction } from "react";
+import AddButton from "@components/atoms/CreateTaskButton";
+import TaskForm from "./CreateTask";
 
 export interface CreateTaskModalProps {
   isVisibile: boolean;
@@ -20,7 +20,7 @@ const RenderCreateTaskModal = ({
   return (
     <>
       {isVisibile ? (
-        <CreateTaskForm
+        <TaskForm
           isVisibile={isVisibile}
           setLoading={setLoading}
           isLoading={isLoading}

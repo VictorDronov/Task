@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as Realm from "realm-web";
-import { realmApp } from "../../../lib/realm";
+import { mongodb, realmApp } from "../../../lib/realm";
 import { useRouter } from "next/router";
 import { ErrorMessage } from "components";
 
@@ -19,6 +19,7 @@ const AuthForm = (): React.ReactElement => {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm<LoginForm>({});
   const [error, setCustomError] = useState<{ bool: boolean; message: string }>({
     bool: false,
@@ -53,10 +54,17 @@ const AuthForm = (): React.ReactElement => {
         }
       }
     } catch (err) {
-      setCustomError({
-        bool: true,
-        message: "Incorrect email or password *",
-      });
+      if ((err as { error: string }).error === "name already in use") {
+        setError("email", {
+          type: "manual",
+          message: "Email is already in use.",
+        });
+      } else {
+        setCustomError({
+          bool: true,
+          message: "Incorrect email or password *",
+        });
+      }
     }
   };
 
@@ -84,6 +92,7 @@ const AuthForm = (): React.ReactElement => {
             type="email"
             {...register("email", {
               required: "Please enter your email!",
+              // validate: { checkAvalability: async (value) => {} },
             })}
           />
         </label>

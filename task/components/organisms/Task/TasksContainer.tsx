@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { mongodb, realmApp } from "../../lib/realm";
-import RenderTask from "./RenderTaskItem";
-import { TaskProps, TaskStateProps } from "./TaskItemInterfaces";
+import { mongodb, realmApp } from "../../../lib/realm";
+import { TaskProps, TaskStateProps } from "./interfaces/TaskItemInterfaces";
 import Image from "next/image";
+import RenderTask from "./Tasks";
 
-const Tasks = ({
+const TaskItem = ({
   isRefreshing,
   setRefreshing,
 }: TaskStateProps): React.ReactElement => {
@@ -78,9 +78,6 @@ const Tasks = ({
         </div>
       ) : (
         <div>
-          {/* <h2 className="mt-6 mb-6 font-semibold text-brand-primary">
-            You have no tasks!
-          </h2> */}
           <Image
             src="/images/plantleaves.png"
             alt=""
@@ -97,4 +94,4 @@ const Tasks = ({
   );
 };
 
-export default Tasks;
+export default TaskItem;

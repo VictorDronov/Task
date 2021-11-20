@@ -10,7 +10,7 @@ const isAuthenticated = !!realmApp.currentUser;
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
-  const CheckAuth = (isAuthenticated: boolean) => {
+  const checkAuth = (isAuthenticated: boolean) => {
     if (isAuthenticated) {
       router.push("/my-tasks");
     } else {
@@ -19,7 +19,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   };
 
   useEffect(() => {
-    CheckAuth(isAuthenticated);
+    checkAuth(isAuthenticated);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <Component {...pageProps} />;

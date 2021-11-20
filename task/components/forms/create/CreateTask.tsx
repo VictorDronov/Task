@@ -1,5 +1,6 @@
-import ErrorMessage from "@components/common/ErrorItem";
-import React from "react";
+import ErrorMessage from "@components/atoms/ErrorItem";
+import { useClickOutside } from "helpers";
+import React, { useCallback } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FaSpinner } from "react-icons/fa";
 import { mongodb, realmApp } from "../../../lib/realm";
@@ -10,11 +11,14 @@ interface FormProps {
 }
 
 const TaskForm = ({
+  isVisibile,
   isLoading,
   setLoading,
   setRefreshing,
   setIsVisibile,
 }: CreateTaskModalProps): React.ReactElement => {
+  const closeInput = useCallback(() => setIsVisibile(false), [setIsVisibile]);
+
   const {
     register,
     handleSubmit,
@@ -50,14 +54,22 @@ const TaskForm = ({
     }
   };
 
+  const [ref] = useClickOutside({
+    onClick: closeInput,
+    isActive: isVisibile,
+  });
+
   return !isLoading ? (
-    <div className="w-full m-auto">
+    <div className="w-full m-auto mt-4">
       <ErrorMessage
         name={errors.task}
         message={errors.task?.message}
         styles="bg-brand-secondary h-8 flex justify-center text-center"
       />
-      <div className="flex-col items-center justify-center m-auto md:w-2/4">
+      <div
+        className="flex-col items-center justify-center m-auto md:w-2/4"
+        ref={ref}
+      >
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-row justify-center w-full p-2 align-middle border-2 border-solid rounded-md border-brand-primary bg-brand-secondary">
             <label className="flex w-full text-black align-middle">
@@ -70,8 +82,8 @@ const TaskForm = ({
                     message: "Task can not be shorter than 8 characters.",
                   },
                   maxLength: {
-                    value: 20,
-                    message: "Task can not exceed 20 characters.",
+                    value: 30,
+                    message: "Task can not exceed 30 characters.",
                   },
                   required: "Please enter your Task.",
                 })}
@@ -82,7 +94,7 @@ const TaskForm = ({
               type="submit"
               disabled={!isValid}
             >
-              Add Task
+              Add
             </button>
           </div>
         </form>
