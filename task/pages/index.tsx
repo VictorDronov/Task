@@ -1,4 +1,4 @@
-import { ContentWrapper } from "@components/index";
+import { Template } from "@components/index";
 import { useRouter } from "next/router";
 import React from "react";
 import Image from "next/image";
@@ -7,7 +7,7 @@ const Landing = (): React.ReactElement => {
   const router = useRouter();
 
   return (
-    <ContentWrapper>
+    <Template>
       <div className="flex flex-col max-w-md min-h-screen m-auto">
         <div className="relative flex justify-center w-full font-bold text-center text-transparent cursor-default mt-7">
           <Image
@@ -35,7 +35,7 @@ const Landing = (): React.ReactElement => {
           </p>
         </div>
       </div>
-    </ContentWrapper>
+    </Template>
   );
 };
 

@@ -1,6 +1,6 @@
 import { TaskForm } from "@components/forms";
 import { Tasks } from "@components/organisms";
-import { Tempalte } from "@components/templates";
+import { Template } from "@components/templates";
 import { useState } from "react";
 
 const MyTasks = (): React.ReactElement => {
@@ -9,7 +9,7 @@ const MyTasks = (): React.ReactElement => {
   const [isVisibile, setIsVisibile] = useState(false);
 
   return (
-    <Tempalte header footer>
+    <Template header footer>
       <TaskForm
         setLoading={setLoading}
         isLoading={isLoading}
@@ -18,7 +18,7 @@ const MyTasks = (): React.ReactElement => {
         setRefreshing={setRefreshing}
       />
       <Tasks isRefreshing={isRefreshing} setRefreshing={setRefreshing} />
-    </Tempalte>
+    </Template>
   );
 };
 
