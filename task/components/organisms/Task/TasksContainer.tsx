@@ -9,7 +9,7 @@ const TaskItem = ({
   setRefreshing,
 }: TaskStateProps): React.ReactElement => {
   const [tasks, setTasks] = useState<TaskProps[]>();
-
+  // TODO: Move get to seperate file
   useEffect(() => {
     if (isRefreshing === true) {
       mongodb
@@ -26,7 +26,7 @@ const TaskItem = ({
     }
   }, [isRefreshing, setRefreshing]);
 
-  const Delete = (id: string, complete: boolean) => {
+  const deleteTask = (id: string, complete: boolean) => {
     mongodb
       ?.db("user_tasks")
       .collection("tasks")
@@ -39,7 +39,7 @@ const TaskItem = ({
       });
   };
 
-  const UpdateComplete = (id: string, complete: boolean) => {
+  const updateComplete = (id: string, complete: boolean) => {
     const query = { _id: id };
     const update = {
       $set: {
@@ -60,24 +60,24 @@ const TaskItem = ({
   };
 
   return (
-    <div>
+    <>
       {tasks?.length !== 0 ? (
-        <div>
+        <>
           <h2 className="m-auto mt-6 mb-6 text-xl font-semibold text-left text-brand-primary md:w-2/4">
             Tasks - {tasks ? `${tasks?.length}` : 0}
           </h2>
           <div className="task-wrapper">
             <RenderTask
-              completeTask={UpdateComplete}
-              deleteTask={Delete}
+              completeTask={updateComplete}
+              deleteTask={deleteTask}
               tasks={tasks}
               setRefreshing={setRefreshing}
               isRefreshing={isRefreshing}
             />
           </div>
-        </div>
+        </>
       ) : (
-        <div>
+        <div className="flex flex-col items-center justify-center">
           <Image
             src="/images/plantleaves.png"
             alt=""
@@ -85,12 +85,12 @@ const TaskItem = ({
             height={300}
           />
           <p className="text-lg">
-            Get started by{" "}
+            Get started by
             <span className="text-brand-primary">Adding a task</span> above.
           </p>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

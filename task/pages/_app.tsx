@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     if (isAuthenticated) {
       router.push("/my-tasks");
     } else {
-      router.push("/auth");
+      router.push("/");
     }
   };
 

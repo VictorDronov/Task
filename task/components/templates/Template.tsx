@@ -14,8 +14,8 @@ const ContentWrapper = ({
   header = false,
 }: IProps): React.ReactElement => {
   return (
-    <div className="min-h-screen bg-brand-secondary">
-      <div className="container flex flex-col justify-center text-center text-brand-text">
+    <div className="flex flex-col items-stretch min-w-full min-h-screen bg-brand-secondary">
+      <div className="container flex-grow text-brand-text">
         {header && <Header />}
         {children}
       </div>

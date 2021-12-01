@@ -8,7 +8,7 @@ const Header = (): React.ReactElement => {
 
   const LogOut = () => {
     realmApp.currentUser?.logOut();
-    router.push("/auth");
+    router.push("/");
   };
 
   return (

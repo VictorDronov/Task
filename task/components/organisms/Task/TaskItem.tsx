@@ -11,8 +11,8 @@ const TaskItem = ({
 }: TaskProps): React.ReactElement => {
   const [show, setShow] = useState<boolean>(true);
   const [deleting, setDeleting] = useState<boolean>(false);
-  const [bunny, setBunny] = useState<number[]>([]);
-  const DelayDelete = () => {
+
+  const delayDelete = () => {
     if (complete === true) {
       setDeleting(true);
       setTimeout(() => {
@@ -40,14 +40,14 @@ const TaskItem = ({
   }, [_id]);
 
   useEffect(() => {
-    DelayDelete();
+    delayDelete();
   });
 
   return (
     <div
       className={`${
         deleting ? "animate-fade-out" : ""
-      } w-full p-3 m-auto mb-3 bg-gray-800 rounded-xl md:w-6/12 `}
+      } w-full p-3 m-auto mb-3 bg-gray-800  rounded-xl md:w-6/12 `}
     >
       <div className="relative flex flex-row">
         <div className="flex self-center justify-between w-full ">

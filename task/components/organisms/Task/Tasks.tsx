@@ -10,7 +10,7 @@ const RenderTask = ({
   setRefreshing,
 }: ITaskProps): React.ReactElement => {
   return (
-    <div>
+    <>
       {tasks?.map(({ _id, complete, task, user_id }) => (
         <TaskItem
           _id={_id}
@@ -19,12 +19,12 @@ const RenderTask = ({
           user_id={user_id}
           completeTask={completeTask}
           deleteTask={deleteTask}
-          key={Math.random()}
+          key={_id}
           setRefreshing={setRefreshing}
           isRefreshing={isRefreshing}
         />
       ))}
-    </div>
+    </>
   );
 };
 
