@@ -86,7 +86,7 @@ const TaskItem = ({
           />
           <p className="text-lg">
             Get started by
-            <span className="text-brand-primary">Adding a task</span> above.
+            <span className="text-brand-primary"> Adding a task</span> above.
           </p>
         </div>
       )}

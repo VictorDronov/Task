@@ -90,7 +90,7 @@ const TaskForm = ({
               />
             </label>
             <button
-              className="z-50 w-2/4 py-2 font-bold transition bg-brand-primary disabled:opacity-80 disabled:cursor-not-allowed hover:opacity-80 text-brand-secondary"
+              className="z-50 w-1/4 py-2 font-bold transition bg-brand-primary disabled:opacity-80 disabled:cursor-not-allowed hover:opacity-80 text-brand-secondary"
               type="submit"
               disabled={!isValid}
             >

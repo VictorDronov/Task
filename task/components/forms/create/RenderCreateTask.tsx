@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
-import AddButton from "@components/atoms/CreateTaskButton";
 import TaskForm from "./CreateTask";
+import AddButton from "@components/atoms/CreateTaskButton";
 
 export interface CreateTaskModalProps {
   isVisibile: boolean;
