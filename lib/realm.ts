@@ -12,3 +12,5 @@ export const realmApp: Realm.App = new Realm.App({
 });
 
 export const mongodb = realmApp?.currentUser?.mongoClient("mongodb-atlas");
+
+export const user = realmApp.currentUser;

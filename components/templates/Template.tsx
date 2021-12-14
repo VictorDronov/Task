@@ -1,6 +1,5 @@
 import React from "react";
-import Footer from "../atoms/FooterSlice";
-import Header from "../atoms/HeaderSlice";
+import { Footer, Header } from "../atoms";
 
 interface IProps {
   header?: boolean;

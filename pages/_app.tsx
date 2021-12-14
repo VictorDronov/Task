@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     checkAuth(isAuthenticated);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <Component {...pageProps} />;
