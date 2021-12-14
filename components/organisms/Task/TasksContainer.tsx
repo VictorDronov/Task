@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { mongodb, realmApp } from "../../../lib/realm";
+import { mongodb, realmApp, user } from "../../../lib/realm";
 import { TaskProps, TaskStateProps } from "./interfaces/TaskItemInterfaces";
 import Image from "next/image";
 import RenderTask from "./Tasks";
+import getTasks from "pages/api/getTasks";
+import deleteTaskById from "pages/api/deleteTask";
 
 const TaskItem = ({
   isRefreshing,
   setRefreshing,
 }: TaskStateProps): React.ReactElement => {
   const [tasks, setTasks] = useState<TaskProps[]>();
-  // TODO: Move get to seperate file
+
   useEffect(() => {
-    if (isRefreshing === true) {
-      mongodb
-        ?.db("user_tasks")
-        .collection("tasks")
-        .find({ user_id: `${realmApp.currentUser?.id}` })
+    if (isRefreshing === true && user) {
+      getTasks(user?.id)
         .then((res) => {
           setTasks(res);
           setRefreshing(!isRefreshing);
@@ -26,37 +25,14 @@ const TaskItem = ({
     }
   }, [isRefreshing, setRefreshing]);
 
-  const deleteTask = (id: string, complete: boolean) => {
-    mongodb
-      ?.db("user_tasks")
-      .collection("tasks")
-      .deleteOne({ _id: id, complete: complete === true })
+  const deleteTask = (id: string) => {
+    deleteTaskById(id)
       .then(() => {
         setRefreshing(!isRefreshing);
       })
       .catch((err) => {
         console.log(err);
       });
-  };
-
-  const updateComplete = (id: string, complete: boolean) => {
-    const query = { _id: id };
-    const update = {
-      $set: {
-        complete: complete,
-      },
-    };
-    mongodb
-      ?.db("user_tasks")
-      .collection("tasks")
-      .updateOne(query, update)
-      .then((result) => {
-        const { matchedCount, modifiedCount } = result;
-        if (matchedCount && modifiedCount) {
-          setRefreshing(!isRefreshing);
-        }
-      })
-      .catch((err) => console.error(`Failed to update the item: ${err}`));
   };
 
   return (
@@ -68,7 +44,6 @@ const TaskItem = ({
           </h2>
           <div className="task-wrapper">
             <RenderTask
-              completeTask={updateComplete}
               deleteTask={deleteTask}
               tasks={tasks}
               setRefreshing={setRefreshing}

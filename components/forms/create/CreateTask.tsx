@@ -38,7 +38,6 @@ const TaskForm = ({
         .insertOne({
           user_id: realmApp.currentUser.id,
           task: data.task,
-          complete: false,
         })
         .then((res) => {
           if (res) {
@@ -60,7 +59,7 @@ const TaskForm = ({
   });
 
   return !isLoading ? (
-    <div className="w-full m-auto mt-4">
+    <div className="w-full m-auto mt-2">
       <ErrorMessage
         name={errors.task}
         message={errors.task?.message}
@@ -74,23 +73,24 @@ const TaskForm = ({
           <div className="flex flex-row justify-center w-full p-2 align-middle border-2 border-solid rounded-md border-brand-primary bg-brand-secondary">
             <label className="flex w-full text-black align-middle">
               <input
+                autoFocus
                 autoComplete="on"
                 placeholder="Your Task"
                 {...register("task", {
                   minLength: {
-                    value: 8,
-                    message: "Task can not be shorter than 8 characters.",
+                    value: 3,
+                    message: "Task can not be shorter than 3 characters.",
                   },
                   maxLength: {
-                    value: 30,
-                    message: "Task can not exceed 30 characters.",
+                    value: 64,
+                    message: "Break your task down.",
                   },
                   required: "Please enter your Task.",
                 })}
               />
             </label>
             <button
-              className="z-50 w-1/4 py-2 font-bold transition bg-brand-primary disabled:opacity-80 disabled:cursor-not-allowed hover:opacity-80 text-brand-secondary"
+              className="z-50 w-1/4 py-1 font-bold transition bg-brand-primary disabled:opacity-80 disabled:cursor-not-allowed hover:opacity-80 text-brand-secondary"
               type="submit"
               disabled={!isValid}
             >

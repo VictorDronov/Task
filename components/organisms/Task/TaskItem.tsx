@@ -1,28 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { FaAngleDown, FaAngleUp, FaCheck } from "react-icons/fa";
-import { TaskProps } from "./interfaces/TaskItemInterfaces";
+import { TaskProps } from "./interfaces";
 
-const TaskItem = ({
-  _id,
-  complete,
-  task,
-  deleteTask,
-  completeTask,
-}: TaskProps): React.ReactElement => {
+let timer: any;
+
+const TaskItem = ({ _id, task, deleteTask }: TaskProps): React.ReactElement => {
   const [show, setShow] = useState<boolean>(true);
   const [deleting, setDeleting] = useState<boolean>(false);
 
-  const delayDelete = () => {
-    if (complete === true) {
-      setDeleting(true);
-      setTimeout(() => {
-        deleteTask(_id, complete === true);
-        setDeleting(false);
+  const deleteItem = () => {
+    setDeleting(!deleting);
+  };
+
+  useEffect(() => {
+    if (deleting === false) {
+      clearTimeout(timer);
+    }
+  }, [deleting]);
+
+  useEffect(() => {
+    if (deleting) {
+      timer = setTimeout(() => {
+        deleteTask(_id);
       }, 5000);
     } else {
-      return;
+      clearTimeout(timer);
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deleting]);
 
   useEffect(() => {
     if (typeof window === "object") {
@@ -39,10 +44,6 @@ const TaskItem = ({
     }
   }, [_id]);
 
-  useEffect(() => {
-    delayDelete();
-  });
-
   return (
     <div
       className={`${
@@ -51,16 +52,16 @@ const TaskItem = ({
     >
       <div className="relative flex flex-row">
         <div className="flex self-center justify-between w-full ">
-          <div className="flex flex-row ">
+          <div className="z-20 flex flex-row">
             <div
               className={` absolute top-0 left-0 self-center p-1 border-2 border-solid rounded-lg cursor-pointer border-brand-primary hover:opacity-80  ${
-                complete === true && "bg-brand-primary"
+                deleting === true && "bg-brand-primary"
               }`}
-              onClick={() => completeTask(_id, !complete)}
+              onClick={() => deleteItem()}
             >
               <FaCheck
                 className={`${
-                  complete ? "visible text-brand-secondary" : "invisible"
+                  deleting ? "visible text-brand-secondary" : "invisible"
                 }`}
                 size="20"
               />
@@ -76,7 +77,7 @@ const TaskItem = ({
             {show ? (
               <FaAngleUp
                 id={`toggle${_id}`}
-                className="show text-brand-primary"
+                className="-rotate-90 show text-brand-primary"
                 onClick={() => setShow(false)}
                 size={30}
               />

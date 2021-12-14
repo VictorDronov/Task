@@ -1,7 +1,7 @@
 import React from "react";
 import { FaLeaf } from "react-icons/fa";
 import { useRouter } from "next/router";
-import { realmApp } from "../../lib/realm";
+import { realmApp } from "../../../lib/realm";
 
 const Header = (): React.ReactElement => {
   const router = useRouter();

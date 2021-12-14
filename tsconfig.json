@@ -20,8 +20,16 @@
       "@enums/*": ["enums/*"],
       "@types/*": ["types/*"],
       "@public/*": ["public/*"],
-      "@services/*": ["services/*"],
-    }  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.svg", "components/organisms/Task/TasksContainer.tsx", "components/organisms/Task/Tasks.tsx"],
+      "@services/*": ["services/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.svg",
+    "components/organisms/Task/TasksContainer.tsx",
+    "components/organisms/Task/Tasks.tsx"
+  ],
   "exclude": ["node_modules"]
 }
