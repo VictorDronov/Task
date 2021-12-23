@@ -1,11 +1,8 @@
-import { mongodb } from "lib/realm";
+import { dbGetById } from "helpers";
 
-// Gets user
-export default async function getUsername(id: string): Promise<UserObject> {
-  const data = await mongodb
-    ?.db("users")
-    .collection("usernames")
-    .find({ user_id: id });
+// Gets user // TODO: CHANGE THIS
+export default async function getUsername(): Promise<UserObject> {
+  const data = await dbGetById("users", "usernames");
 
   return { user: data && data[0] };
 }

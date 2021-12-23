@@ -1,10 +1,7 @@
-import { mongodb } from "lib/realm";
+import { dbGetById } from "helpers";
 
 // Gets tasks list
-export default async function getTasks(id: string) {
-  const data = await mongodb
-    ?.db("user_tasks")
-    .collection("tasks")
-    .find({ user_id: id });
+export default async function getTasks() {
+  const data = await dbGetById("user_tasks", "tasks");
   return data;
 }

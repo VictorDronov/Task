@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { mongodb, realmApp, user } from "../../../lib/realm";
 import { TaskProps, TaskStateProps } from "./interfaces/TaskItemInterfaces";
 import Image from "next/image";
 import RenderTask from "./Tasks";
@@ -13,8 +12,8 @@ const TaskItem = ({
   const [tasks, setTasks] = useState<TaskProps[]>();
 
   useEffect(() => {
-    if (isRefreshing === true && user) {
-      getTasks(user?.id)
+    if (isRefreshing === true) {
+      getTasks()
         .then((res) => {
           setTasks(res);
           setRefreshing(!isRefreshing);

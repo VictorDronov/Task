@@ -1,10 +1,6 @@
-import { mongodb } from "lib/realm";
+import { dbDeleteById } from "helpers";
 
 export default async function deleteTaskById(id: string) {
-  const data = await mongodb
-    ?.db("user_tasks")
-    .collection("tasks")
-    .deleteOne({ _id: id });
-
+  const data = await dbDeleteById("user_tasks", "tasks", id);
   return data;
 }

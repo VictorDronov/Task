@@ -2,7 +2,6 @@ import { WelcomeUser } from "@components/atoms";
 import { TaskForm } from "@components/forms";
 import { Tasks } from "@components/organisms";
 import { Template } from "@components/templates";
-import { user } from "lib/realm";
 import { useEffect, useState } from "react";
 import getUsername, { UserObject } from "./api/getUsername";
 
@@ -13,8 +12,8 @@ const MyTasks = (): React.ReactElement => {
   const [userObj, setUser] = useState<UserObject>();
 
   useEffect(() => {
-    if (user) getUsername(user.id).then((res) => setUser(res));
-  }, []);
+    getUsername().then((res) => setUser(res));
+  }, [userObj]);
 
   return (
     <Template header footer>

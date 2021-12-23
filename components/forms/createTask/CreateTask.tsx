@@ -1,9 +1,10 @@
 import { ErrorMessage } from "@components/atoms";
 import { useClickOutside } from "helpers";
+import { dbInsertOne } from "helpers";
 import React, { useCallback } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FaSpinner } from "react-icons/fa";
-import { mongodb, realmApp } from "../../../lib/realm";
+import { realmApp } from "../../../lib/realm";
 import { CreateTaskModalProps } from "./RenderCreateTask";
 
 interface FormProps {
@@ -31,15 +32,10 @@ const TaskForm = ({
 
   const onSubmit: SubmitHandler<FormProps> = async (data): Promise<void> => {
     setLoading(true);
+    //TODO: Move This to API
     if (realmApp.currentUser) {
-      mongodb
-        ?.db("user_tasks")
-        .collection("tasks")
-        .insertOne({
-          user_id: realmApp.currentUser.id,
-          task: data.task,
-        })
-        .then((res) => {
+      dbInsertOne("user_tasks", "tasks", data.task)
+        ?.then((res: any) => {
           if (res) {
             setLoading(false);
             setRefreshing(true);
@@ -47,7 +43,7 @@ const TaskForm = ({
             reset();
           }
         })
-        .catch((err) => {
+        .catch((err: any) => {
           console.log("An Error occured when creating a task!", err);
         });
     }
